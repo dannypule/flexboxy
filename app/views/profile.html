@@ -1,0 +1,129 @@
+<div class="container profile">
+   <div class="row">
+   		<div class="col s12 m6 offset-m3">
+				<h1 class="text-center" ng-show="currentUser">{{currentUser.firstname}}'s Profile</h1>
+				<h6 class="text-center" ng-show="currentUser">(UID: {{authenticatedId}}, ID: {{id}})</h6>
+				<img class="avatar" ng-show="currentUser" ng-src="{{currentUser.image}}" alt="">
+				<p><span class="bold-text">Skill hours earned:</span> 12.5</p>
+				<p><span class="bold-text">Skill hours spent:</span> 2.5</p>
+				<p><span class="bold-text">Skill hours remaining:</span> 10.5</p>
+				<a class="waves-effect waves-light btn modal-trigger deep-orange darken-1" ng-click="openAddSkill()">Add a skill</a>
+   		</div>
+   </div>
+		
+	<div class="row">
+		<div class="col s12 m6 l4 skill-card" data-beloworigin="true" ng-repeat="(key, value) in skills">
+			<div class="card">
+	      <div class="card-image">
+	      	<i class="material-icons right activator">settings</i>
+          <h2>
+              <span>{{value.skill}}</span>
+          </h2>
+
+          <p>
+              <span class="bold-text" data-field="price">Years of experience:</span>
+              <span>{{value.experience}}</span>
+          </p>
+          <p>
+              <span class="bold-text" data-field="name">Skill level:</span>
+              <span>{{value.skillLevel}}</span>
+          </p>
+          <p>
+              <span class="bold-text" data-field="price">Levels taught:</span>
+              <span ng-show="value.levelsTaught.beginner">
+              	Beginner,
+              </span>
+              <span ng-show="value.levelsTaught.intermediate">
+              	Intermediate,
+              </span>
+              <span ng-show="value.levelsTaught.advanced">
+              	Advanced
+              </span>
+          </p>
+          <p>
+              <span class="bold-text" data-field="comments">Comments:</span>
+              <span>{{value.comments}}</span>
+          </p>
+	      </div>
+	      <!-- <div class="card-content">
+	        <span class="activator grey-text text-darken-4">Details</i></span>
+	      </div> -->
+	      <div class="card-reveal">
+	      	<div class="card-title">
+	      		<i class="fa fa-angle-down pointer right"></i>
+	      	</div>
+	        <a class="waves-effect waves-light btn btn btn-large deep-orange darken-1" ng-click="openAddSkill()">Edit skill</a>
+	        <div ng-hide="deleting">
+	        	<a class="waves-effect waves-light btn btn-large deep-orange darken-1" ng-click="beginDeleting()">Delete skill</a>
+	        </div>
+	        <div class="deleting text-center" ng-show="deleting">
+	        	Are you sure you want to delete?
+	        	<a class="waves-effect waves-light btn btn-small grey grey lighten-1" ng-click="deleteSkill(key)">Yes</a>
+	        	<a class="waves-effect waves-light btn btn-small grey grey lighten-1" ng-click="endDeleting()">No</a>
+	        </div>
+	      </div>
+	    </div>
+		</div>
+	</div>
+</div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal add-skill">
+    <div class="modal-content">
+			<div class="row">
+				<i class="material-icons pointer right" ng-click="closeAddSkill()">close</i>
+			  <form class="col s12 m12 l10 offset-l1" name="addSkillForm" ng-submit="addSkill()" novalidate>
+					<h3 class="text-center">Add a skill</h3>
+			    <div class="row">
+			        <div class="input-field col s12">
+			          <input id="skill" name="skill" type="text" ng-model="skill.name" ng-required="true">
+			          <label for="skill">My Skill</label>
+			        </div>
+			        <div class="input-field col s12">
+			          <input id="experience" name="experience" type="text" ng-model="skill.experience" ng-required="true">
+			          <label for="experience">Years of experience</label>
+			        </div>
+			        <div class="input-field col s12">
+			        	<br>
+			          <p class="range-field">
+						      <input type="range" id="skillLevel" value="0" min="1" max="10" ng-model="skill.skillLevel">
+						    </p>
+			          <label for="skillLevel">
+			          	Skill level 
+			          	<span class="green-text skill-level" ng-hide="skill.skillLevel">(6)</span>
+			          	<span class="green-text skill-level" ng-show="skill.skillLevel">({{skill.skillLevel}})</span>
+			          </label>
+			        </div>
+			        <!-- <div class="input-field col s12">
+			          <input id="levelTaught" name="levelTaught" type="text" ng-model="skill.levelTaught" ng-required="true">
+			          <label for="levelTaught">What levels will you teach?</label>
+			        </div> -->
+			        <div class="levels cf">
+			        	<div class="input-field col s12">
+			        		<label for="levels">What levels will you teach?</label>
+			        	</div>
+			        	<div class="input-field col s10 offset-s1 m4">
+			        	  <input name="levels" type="checkbox" id="beginner" ng-model="skill.levelsTaught.beginner"/>
+			        	  <label for="beginner">Beginner</label>
+			        	</div>
+			        	<div class="input-field col s10 offset-s1 m4">
+			        	  <input name="levels" type="checkbox" id="intermediate" ng-model="skill.levelsTaught.intermediate"/>
+			        	  <label for="intermediate">Intermediate</label>
+			        	</div>
+			        	<div class="input-field col s10 offset-s1 m4">
+			        	  <input class="with-gap" name="levels" type="checkbox" id="advanced" ng-model="skill.levelsTaught.advanced"/>
+			        	  <label for="advanced">Advanced</label>
+			        	</div>
+			        </div>
+			        <div class="input-field col s12">
+			          <textarea id="comments" name="comments" class="materialize-textarea" ng-model="skill.comments" ng-required="true"></textarea>
+			          <label for="comments">Comments</label>
+			        </div>
+			        <p ng-show="message">{{message}}</p>
+		        	<button class="waves-effect waves-light btn-large deep-orange darken-1" type="submit">Add Skill</button>
+		        	<button class="waves-effect waves-light btn-large grey grey lighten-1" ng-click="closeAddSkill()" type="cancel">Close</button>
+			    	</div>
+          </form>
+         </div>
+    </div>
+  </div>

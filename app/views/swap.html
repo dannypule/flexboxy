@@ -1,0 +1,20 @@
+<div class="container swap">
+   <div class="row">
+   		<div class="col s12 m6 offset-m3">
+				<h1 ng-show="currentUser">{{currentUser.firstname}}'s Profile</h1>
+				<img class="avatar" ng-show="currentUser" ng-src="{{currentUser.image}}" alt="">
+   		</div>
+   </div>
+   <div class="row">
+   		        <form class="col s12 m6 offset-m3" name="registrationForm" ng-submit="profile()" novalidate>
+   		        <div class="row">
+   		            <div class="input-field col s12">
+   		              <input id="skill" name="skill" type="text" ng-model="skill" ng-required="true">
+   		              <label for="skill">My Skill</label>
+   		            </div>
+   			          <p ng-show="message">{{message}}</p>
+   			          <button class="col s6 offset-s3 waves-effect waves-light btn-large" type="submit">Add Skill</button>
+   			      </div>
+   			    </form>
+   </div>
+</div>

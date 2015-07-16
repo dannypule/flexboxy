@@ -1,0 +1,50 @@
+<div class="container">
+   <div class="row">
+     <div class="col s12 m6 offset-m3">
+
+      <div class="row registration-form">
+
+        <form class="col s12" name="registrationForm" ng-submit="register()" novalidate>
+        <div class="row">
+            <div class="input-field col s12">
+              <input id="lastname" name="lastname" type="text" ng-model="user.firstname" ng-required="true">
+              <label for="lastname">First Name</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="lastname" name="lastname" type="text" ng-model="user.lastname" ng-required="true">
+              <label for="lastname">Last Name</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="city" name="city" type="text" ng-model="user.city" ng-required="true">
+              <label for="city">City</label>
+            </div>
+            <div class="input-field col s12">
+              <label>Country</label>
+              <select class="browser-default" ng-model="user.country">
+                <option value="{{value}}" ng-repeat="(key, value) in countries">{{value}}</option>
+              </select>
+            </div>
+				    <div class="input-field col s12">
+              <input id="image" name="image" type="text" ng-model="user.image" ng-required="false">
+              <label for="image">Image</label>
+            </div>
+				    <div class="input-field col s12"> 
+              <input id="email" name="email" type="text" ng-model="user.email" ng-required="true">
+              <label for="email">Email</label>
+            </div>
+	          <p ng-show="loginForm.email.$invalid && myform.email.$touched">Must be a valid email</p>
+            <div class="input-field col s12">
+              <input id="password" name="password" type="password" ng-model="user.password" ng-required="true">
+              <label for="password">Password</label>
+            </div>
+	          <p ng-show="loginForm.password.$invalid && myform.password.$touched">Password is required</p>
+
+	          <p ng-show="message">{{message}}</p>
+	          <button class="col s6 offset-s3 waves-effect waves-light btn-large" type="submit">Login</button>
+	      </div>
+	    </form>
+    </div> 
+
+     </div>
+   </div>
+</div>

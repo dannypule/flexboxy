@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="skillApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="resources/angular/angular.min.js"></script>
+  <script src="resources/angular/angular-route.min.js"></script>
+
+  <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.min.js"></script>
+
+  <script src="js/app.js"></script>
+
+  <!-- controllers -->
+  <script src="js/controllers/maincontroller.js"></script>
+  <script src="js/controllers/registration.js"></script>
+  <script src="js/controllers/logout.js"></script>
+  <script src="js/controllers/profilecontroller.js"></script>
+
+  <!-- services -->
+  <script src="js/services/authentication.js"></script>
+
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles-min.css">
+
+  <title>SkillSwap</title>
+
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper blue darken-3">
+      <a href="#" class="brand-logo">&nbsp; &nbsp;SkillSwap</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#/swap">Swap</a></li>
+        <li><a href="#/about">About</a></li>
+        <li><a href="#/profile" ng-show="currentUser">Profile</a></li>
+        <li><a href="#/login" ng-hide="currentUser">Login</a></li>
+        <li><a href="#/register" ng-hide="currentUser">Register</a></li>
+        <li><a ng-href='#/logout' ng-show="currentUser">Logout</a></li>
+        <img class="navatar" ng-show="currentUser" ng-src="{{currentUser.image}}" alt="">
+        
+      </ul>
+    </div>
+  </nav>
+  <div ng-view></div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+</body>
+</html>
+
+
